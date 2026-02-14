@@ -1,0 +1,1050 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vaibhav Srivastava - Portfolio</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Fira+Code:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(147, 51, 234, 0.5); }
+      50% { box-shadow: 0 0 40px rgba(147, 51, 234, 0.8); }
+    }
+    
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .slide-in-left {
+      animation: slideInLeft 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .slide-in-right {
+      animation: slideInRight 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .glow-animation {
+      animation: glow 2s ease-in-out infinite;
+    }
+    
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    .delay-6 { animation-delay: 0.6s; }
+    
+    .hover-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app" class="h-full w-full overflow-auto"></div>
+  <script>
+    const defaultConfig = {
+      developer_name: "Vaibhav Srivastava",
+      tagline: "Full Stack Web Developer",
+      phone_number: "7081990132",
+      email_address: "vaibhav76.com9832@gmail.com",
+      hero_title: "Building Digital Experiences That Matter",
+      hero_subtitle: "Crafting scalable, user-friendly web applications with modern technologies",
+      cta_button: "Let's Work Together",
+      background_color: "#0a0a0f",
+      surface_color: "#1a1a2e",
+      text_color: "#f0f0f0",
+      primary_action_color: "#9333ea",
+      secondary_action_color: "#ec4899",
+      font_family: "Astroz",
+      font_size: 16
+    };
+
+    let currentPage = 'home';
+    
+    const pages = {
+      home: { title: 'Home', icon: '🏠' },
+      about: { title: 'About', icon: '👨‍💻' },
+      skills: { title: 'Skills', icon: '⚡' },
+      projects: { title: 'Projects', icon: '💼' },
+      experience: { title: 'Experience', icon: '🎯' },
+      services: { title: 'Services', icon: '🚀' },
+      testimonials: { title: 'Testimonials', icon: '💬' },
+      certifications: { title: 'Certifications', icon: '🏆' },
+      techStack: { title: 'Tech Stack', icon: '🛠️' },
+      blog: { title: 'Blog', icon: '📝' },
+      contact: { title: 'Contact', icon: '📧' },
+      resume: { title: 'Resume', icon: '📄' },
+      achievements: { title: 'Achievements', icon: '🌟' },
+      caseStudies: { title: 'Case Studies', icon: '📊' },
+      faq: { title: 'FAQ', icon: '❓' }
+    };
+    
+    const skills = [
+      { name: 'HTML', level: 95, icon: '🌐' },
+      { name: 'CSS', level: 92, icon: '🎨' },
+      { name: 'JavaScript', level: 90, icon: '⚡' },
+      { name: 'React.js', level: 88, icon: '⚛️' },
+      { name: 'Node.js', level: 85, icon: '🟢' },
+      { name: 'Python', level: 83, icon: '🐍' },
+      { name: 'Java', level: 80, icon: '☕' },
+      { name: 'C++', level: 78, icon: '⚙️' }
+    ];
+    
+    const projects = [
+      {
+        id: 1,
+        name: 'Weather Forecast App',
+        description: 'Real-time weather application with 7-day forecast and interactive maps',
+        tech: ['JavaScript', 'React.js', 'OpenWeather API', 'CSS'],
+        emoji: '🌤️',
+        demo: true
+      },
+      {
+        id: 2,
+        name: 'Banking System',
+        description: 'Secure banking platform with transaction management',
+        tech: ['Node.js', 'React.js', 'MongoDB', 'JWT'],
+        emoji: '🏦',
+        demo: true
+      },
+      {
+        id: 3,
+        name: 'Hospital Management',
+        description: 'Complete hospital system with patient records',
+        tech: ['Java', 'React.js', 'MySQL', 'Spring Boot'],
+        emoji: '🏥',
+        demo: true
+      },
+      {
+        id: 4,
+        name: 'Food Delivery Platform',
+        description: 'Full-featured food delivery with real-time tracking',
+        tech: ['React.js', 'Node.js', 'MongoDB', 'Socket.io'],
+        emoji: '🍔',
+        demo: true
+      },
+      {
+        id: 5,
+        name: 'E-Commerce Store',
+        description: 'Modern e-commerce with payment integration',
+        tech: ['React.js', 'Node.js', 'Stripe', 'PostgreSQL'],
+        emoji: '🛒',
+        demo: true
+      },
+      {
+        id: 6,
+        name: 'Portfolio Builder',
+        description: 'Drag-and-drop portfolio builder tool',
+        tech: ['React.js', 'Python', 'Django', 'AWS'],
+        emoji: '🎨',
+        demo: true
+      }
+    ];
+
+    function navigateToPage(page) {
+      currentPage = page;
+      window.scrollTo(0, 0);
+      renderPage();
+    }
+    
+    function openProject(projectId) {
+      const project = projects.find(p => p.id === projectId);
+      if (project && project.demo) {
+        showProjectDemo(project);
+      }
+    }
+    
+    function showProjectDemo(project) {
+      const config = window.elementSdk?.config || defaultConfig;
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        animation: fadeInUp 0.3s ease;
+      `;
+      
+      modal.innerHTML = `
+        <div style="background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.3); border-radius: 20px; padding: 40px; max-width: 800px; width: 100%; max-height: 90%; overflow-y: auto; position: relative; animation: fadeInUp 0.4s ease;">
+          <button onclick="this.closest('div').parentElement.remove()" style="position: absolute; top: 20px; right: 20px; background: ${config.primary_action_color}; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: ${baseFont * 1.5}px; display: flex; align-items: center; justify-content: center; font-family: ${customFont}, "Canva-Sans">×</button>
+          
+          <div style="font-size: ${baseFont * 5}px; text-align: center; margin-bottom: 20px;">${project.emoji}</div>
+          <h2 style="font-size: ${baseFont * 2}px; color: ${config.text_color}; text-align: center; margin-bottom: 15px; font-weight: 700; font-family: ${customFont}, Canva-Sans">${project.name}</h2>
+          <p style="font-size: ${baseFont}px; color: ${config.text_color}; opacity: 0.8; text-align: center; margin-bottom: 30px; font-family: ${customFont}, Canva-Sans;">${project.description}</p>
+          
+          <div style="background: ${config.background_color}; border-radius: 15px; padding: 60px 20px; margin-bottom: 30px; text-align: center;">
+            <div style="font-size: ${baseFont * 4}px; margin-bottom: 20px;">🚀</div>
+            <p style="font-size: ${baseFont * 1.2}px; color: ${config.text_color}; font-weight: 600; font-family: ${customFont}, sans-serif;">Live Demo Available</p>
+            <p style="font-size: ${baseFont * 0.9}px; color: ${config.text_color}; opacity: 0.7; margin-top: 10px; font-family: ${customFont}, sans-serif;">Interactive preview coming soon</p>
+          </div>
+          
+          <div style="margin-bottom: 30px;">
+            <h3 style="font-size: ${baseFont * 1.2}px; color: ${config.text_color}; margin-bottom: 15px; font-weight: 600; font-family: ${customFont}, Helvetica;">Technologies Used:</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              ${project.tech.map(tech => `
+                <span style="background: ${config.primary_action_color}; color: white; padding: 8px 16px; border-radius: 20px; font-size: ${baseFont * 0.85}px; font-family: ${customFont}, Futura;">${tech}</span>
+              `).join('')}
+            </div>
+          </div>
+          
+          <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <button style="flex: 1; background: ${config.primary_action_color}; color: white; border: none; padding: 14px 30px; border-radius: 10px; font-size: ${baseFont}px; font-weight: 600; cursor: pointer; font-family: ${customFont}, sans-serif;" onclick="showToast('Opening live demo...')">View Live Demo</button>
+            <button style="flex: 1; background: transparent; color: ${config.primary_action_color}; border: 2px solid ${config.primary_action_color}; padding: 14px 30px; border-radius: 10px; font-size: ${baseFont}px; font-weight: 600; cursor: pointer; font-family: ${customFont}, sans-serif;" onclick="showToast('Opening source code...')">View Code</button>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+    }
+
+    function renderNav() {
+      const config = window.elementSdk?.config || defaultConfig;
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      
+      return `
+        <nav style="background: ${config.surface_color}; border-bottom: 1px solid rgba(147, 51, 234, 0.2); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px);">
+          <div style="max-width: 1400px; margin: 0 auto; padding: 20px 40px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+              <div onclick="navigateToPage('home')" style="cursor: pointer;">
+                <h1 style="font-size: ${baseFont * 1.5}px; font-weight: 700; color: ${config.text_color}; margin: 0; font-family: ${customFont}, sans-serif;">&lt;<span class="gradient-text">${config.developer_name}</span> /&gt;</h1>
+                <p style="font-size: ${baseFont * 0.75}px; color: ${config.primary_action_color}; margin: 4px 0 0 0; font-family: 'Fira Code', monospace;">${config.tagline}</p>
+              </div>
+              
+              <div style="display: flex; gap: 25px; flex-wrap: wrap; align-items: center;">
+                ${Object.entries(pages).slice(0, 6).map(([key, page]) => `
+                  <a onclick="navigateToPage('${key}')" style="font-size: ${baseFont * 0.9}px; color: ${currentPage === key ? config.primary_action_color : config.text_color}; text-decoration: none; cursor: pointer; font-weight: 500; font-family: ${customFont}, sans-serif; transition: color 0.3s ease; display: flex; align-items: center; gap: 6px;" onmouseover="this.style.color='${config.primary_action_color}'" onmouseout="this.style.color='${currentPage === key ? config.primary_action_color : config.text_color}'">
+                    <span>${page.icon}</span>
+                    <span>${page.title}</span>
+                  </a>
+                `).join('')}
+                <button onclick="navigateToPage('contact')" class="glow-animation" style="background: ${config.primary_action_color}; color: white; border: none; padding: 10px 24px; border-radius: 8px; font-size: ${baseFont * 0.9}px; font-weight: 600; cursor: pointer; font-family: ${customFont}, sans-serif;">Hire Me</button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      `;
+    }
+
+    function renderHomePage() {
+      const config = window.elementSdk?.config || defaultConfig;
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      
+      return `
+        <div style="background: ${config.background_color};">
+          <!-- Hero Section -->
+          <section class="gradient-bg" style="min-height: 90%; padding: 100px 40px; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 10%; left: 10%; width: 300px; height: 300px; background: ${config.primary_action_color}; opacity: 0.1; border-radius: 50%; filter: blur(80px);"></div>
+            <div style="position: absolute; bottom: 10%; right: 10%; width: 400px; height: 400px; background: ${config.secondary_action_color}; opacity: 0.1; border-radius: 50%; filter: blur(100px);"></div>
+            
+            <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; align-items: center;">
+                <div>
+                  <p class="fade-in-up" style="font-size: ${baseFont * 0.9}px; color: ${config.primary_action_color}; margin-bottom: 20px; font-family: 'Fira Code', monospace;">console.log("Hello, World! 👋");</p>
+                  <h1 class="fade-in-up delay-1" style="font-size: ${baseFont * 3.5}px; color: ${config.text_color}; margin-bottom: 20px; font-weight: 800; line-height: 1.2; font-family: ${customFont}, sans-serif;">
+                    I'm <span class="gradient-text">${config.developer_name}</span>
+                  </h1>
+                  <h2 class="fade-in-up delay-2" style="font-size: ${baseFont * 1.8}px; color: ${config.text_color}; opacity: 0.9; margin-bottom: 15px; font-weight: 600; font-family: ${customFont}, sans-serif;">${config.hero_title}</h2>
+                  <p class="fade-in-up delay-3" style="font-size: ${baseFont * 1.1}px; color: ${config.text_color}; opacity: 0.7; margin-bottom: 40px; line-height: 1.6; font-family: ${customFont}, sans-serif;">${config.hero_subtitle}</p>
+                  
+                  <div class="fade-in-up delay-4" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <button onclick="navigateToPage('projects')" style="background: ${config.primary_action_color}; color: white; border: none; padding: 16px 32px; border-radius: 12px; font-size: ${baseFont}px; font-weight: 600; cursor: pointer; transition: transform 0.3s ease; font-family: ${customFont}, sans-serif;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">${config.cta_button}</button>
+                    <button onclick="navigateToPage('about')" style="background: transparent; color: ${config.text_color}; border: 2px solid ${config.text_color}; padding: 16px 32px; border-radius: 12px; font-size: ${baseFont}px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: ${customFont}, sans-serif;" onmouseover="this.style.background='${config.text_color}'; this.style.color='${config.background_color}'" onmouseout="this.style.background='transparent'; this.style.color='${config.text_color}'">Learn More</button>
+                  </div>
+                </div>
+                
+                <div class="float-animation" style="text-align: center;">
+                  <div style="font-size: ${baseFont * 15}px; filter: drop-shadow(0 0 30px ${config.primary_action_color});">👨‍💻</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Quick Stats -->
+          <section style="background: ${config.surface_color}; padding: 60px 40px;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: center;">
+                ${[
+                  { number: '50+', label: 'Projects Completed', icon: '🚀' },
+                  { number: '8', label: 'Technologies', icon: '⚡' },
+                  { number: '3+', label: 'Years Experience', icon: '📅' },
+                  { number: '100%', label: 'Satisfaction', icon: '⭐' }
+                ].map((stat, index) => `
+                  <div class="fade-in-up delay-${index + 1}" style="padding: 30px; background: ${config.background_color}; border: 1px solid rgba(147, 51, 234, 0.2); border-radius: 15px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="font-size: ${baseFont * 3}px; margin-bottom: 10px;">${stat.icon}</div>
+                    <h3 style="font-size: ${baseFont * 2.5}px; color: ${config.primary_action_color}; margin-bottom: 8px; font-weight: 700; font-family: ${customFont}, sans-serif;">${stat.number}</h3>
+                    <p style="font-size: ${baseFont * 0.95}px; color: ${config.text_color}; opacity: 0.8; font-family: ${customFont}, sans-serif;">${stat.label}</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <!-- Featured Projects -->
+          <section style="background: ${config.background_color}; padding: 80px 40px;">
+            <div style="max-width: 1400px; margin: 0 auto;">
+              <div style="text-align: center; margin-bottom: 60px;">
+                <h2 class="fade-in-up" style="font-size: ${baseFont * 3}px; color: ${config.text_color}; margin-bottom: 15px; font-weight: 700; font-family: ${customFont}, sans-serif;">Featured <span class="gradient-text">Projects</span></h2>
+                <p class="fade-in-up delay-1" style="font-size: ${baseFont * 1.1}px; color: ${config.text_color}; opacity: 0.7; font-family: ${customFont}, sans-serif;">Showcasing my best work</p>
+              </div>
+              
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+                ${projects.slice(0, 3).map((project, index) => `
+                  <div class="hover-lift fade-in-up delay-${index + 2}" onclick="openProject(${project.id})" style="background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.2); border-radius: 20px; overflow: hidden; cursor: pointer;">
+                    <div style="background: linear-gradient(135deg, ${config.primary_action_color} 0%, ${config.secondary_action_color} 100%); padding: 60px; text-align: center;">
+                      <div style="font-size: ${baseFont * 5}px;">${project.emoji}</div>
+                    </div>
+                    <div style="padding: 30px;">
+                      <h3 style="font-size: ${baseFont * 1.4}px; color: ${config.text_color}; margin-bottom: 12px; font-weight: 600; font-family: ${customFont}, sans-serif;">${project.name}</h3>
+                      <p style="font-size: ${baseFont * 0.9}px; color: ${config.text_color}; opacity: 0.7; margin-bottom: 20px; line-height: 1.6; font-family: ${customFont}, sans-serif;">${project.description}</p>
+                      <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        ${project.tech.slice(0, 3).map(tech => `
+                          <span style="background: ${config.background_color}; color: ${config.primary_action_color}; padding: 6px 12px; border-radius: 6px; font-size: ${baseFont * 0.75}px; font-family: ${customFont}, sans-serif;">${tech}</span>
+                        `).join('')}
+                      </div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+              
+              <div style="text-align: center; margin-top: 50px;">
+                <button onclick="navigateToPage('projects')" style="background: ${config.primary_action_color}; color: white; border: none; padding: 16px 40px; border-radius: 12px; font-size: ${baseFont}px; font-weight: 600; cursor: pointer; transition: transform 0.3s ease; font-family: ${customFont}, sans-serif;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">View All Projects →</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Skills -->
+          <section style="background: ${config.surface_color}; padding: 80px 40px;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+              <div style="text-align: center; margin-bottom: 60px;">
+                <h2 class="fade-in-up" style="font-size: ${baseFont * 3}px; color: ${config.text_color}; margin-bottom: 15px; font-weight: 700; font-family: ${customFont}, sans-serif;">Technical <span class="gradient-text">Skills</span></h2>
+                <p class="fade-in-up delay-1" style="font-size: ${baseFont * 1.1}px; color: ${config.text_color}; opacity: 0.7; font-family: ${customFont}, sans-serif;">Technologies I work with</p>
+              </div>
+              
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 25px;">
+                ${skills.map((skill, index) => `
+                  <div class="fade-in-up delay-${(index % 4) + 1}" style="background: ${config.background_color}; border: 1px solid rgba(147, 51, 234, 0.2); padding: 30px; border-radius: 15px; text-align: center; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.borderColor='${config.primary_action_color}'; this.style.transform='scale(1.1) rotate(5deg)'" onmouseout="this.style.borderColor='rgba(147, 51, 234, 0.2)'; this.style.transform='scale(1) rotate(0deg)'">
+                    <div style="font-size: ${baseFont * 3}px; margin-bottom: 12px;">${skill.icon}</div>
+                    <p style="font-size: ${baseFont}px; color: ${config.text_color}; font-weight: 600; margin-bottom: 8px; font-family: ${customFont}, sans-serif;">${skill.name}</p>
+                    <div style="background: rgba(147, 51, 234, 0.1); height: 6px; border-radius: 3px; overflow: hidden;">
+                      <div style="width: ${skill.level}%; height: 100%; background: linear-gradient(90deg, ${config.primary_action_color}, ${config.secondary_action_color}); border-radius: 3px;"></div>
+                    </div>
+                    <p style="font-size: ${baseFont * 0.8}px; color: ${config.primary_action_color}; margin-top: 6px; font-family: ${customFont}, sans-serif;">${skill.level}%</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <!-- About Me Section -->
+          <section style="background: ${config.surface_color}; padding: 80px 40px;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+              <div style="text-align: center; margin-bottom: 60px;">
+                <h2 class="fade-in-up" style="font-size: ${baseFont * 3}px; color: ${config.text_color}; margin-bottom: 15px; font-weight: 700; font-family: ${customFont}, sans-serif;">About <span class="gradient-text">Me</span></h2>
+                <p class="fade-in-up delay-1" style="font-size: ${baseFont * 1.1}px; color: ${config.text_color}; opacity: 0.7; font-family: ${customFont}, sans-serif;">Get to know the developer behind the code</p>
+              </div>
+              
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; align-items: center; margin-bottom: 80px;">
+                <div class="slide-in-left">
+                  <div style="width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, ${config.primary_action_color}, ${config.secondary_action_color}); border-radius: 30px; display: flex; align-items: center; justify-content: center; font-size: ${baseFont * 10}px; box-shadow: 0 20px 60px rgba(147, 51, 234, 0.3);">
+                    👨‍💻
+                  </div>
+                </div>
+                
+                <div class="slide-in-right">
+                  <h2 style="font-size: ${baseFont * 2}px; color: ${config.text_color}; margin-bottom: 20px; font-weight: 600; font-family: ${customFont}, sans-serif;">Hello! I'm ${config.developer_name}</h2>
+                  <p style="font-size: ${baseFont}px; color: ${config.text_color}; opacity: 0.8; line-height: 1.8; margin-bottom: 20px; font-family: ${customFont}, sans-serif;">
+                    I'm a passionate Full Stack Web Developer with expertise in building robust, scalable, and user-friendly web applications. With a strong foundation in both frontend and backend technologies, I create seamless digital experiences.
+                  </p>
+                  <p style="font-size: ${baseFont}px; color: ${config.text_color}; opacity: 0.8; line-height: 1.8; margin-bottom: 30px; font-family: ${customFont}, sans-serif;">
+                    My journey in web development started with curiosity and evolved into a professional career where I continuously learn and adapt to new technologies.
+                  </p>
+                  <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button onclick="navigateToPage('contact')" style="background: ${config.primary_action_color}; color: white; border: none; padding: 14px 30px; border-radius: 10px; font-size: ${baseFont * 0.95}px; font-weight: 600; cursor: pointer; font-family: ${customFont}, sans-serif;">Contact Me</button>
+                    <button onclick="navigateToPage('about')" style="background: transparent; color: ${config.primary_action_color}; border: 2px solid ${config.primary_action_color}; padding: 14px 30px; border-radius: 10px; font-size: ${baseFont * 0.95}px; font-weight: 600; cursor: pointer; font-family: ${customFont}, sans-serif;">Learn More</button>
+                  </div>
+                </div>
+              </div>
+              
+              <div style="margin-bottom: 60px;">
+                <h2 class="fade-in-up" style="font-size: ${baseFont * 2.5}px; color: ${config.text_color}; margin-bottom: 40px; font-weight: 700; text-align: center; font-family: ${customFont}, sans-serif;">What I Do</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                  ${[
+                    { icon: '🎨', title: 'Frontend Development', desc: 'Creating beautiful, responsive interfaces with React.js and modern CSS' },
+                    { icon: '⚙️', title: 'Backend Development', desc: 'Building robust server-side applications with Node.js and Java' },
+                    { icon: '💾', title: 'Database Design', desc: 'Designing efficient database solutions for optimal performance' },
+                    { icon: '🚀', title: 'Full Stack Solutions', desc: 'End-to-end development from concept to deployment' }
+                  ].map((service, index) => `
+                    <div class="hover-lift fade-in-up delay-${index + 1}" style="background: ${config.background_color}; border: 1px solid rgba(147, 51, 234, 0.2); padding: 40px; border-radius: 20px; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.borderColor='${config.primary_action_color}'" onmouseout="this.style.borderColor='rgba(147, 51, 234, 0.2)'">
+                      <div style="font-size: ${baseFont * 4}px; margin-bottom: 20px;">${service.icon}</div>
+                      <h3 style="font-size: ${baseFont * 1.3}px; color: ${config.text_color}; margin-bottom: 15px; font-weight: 600; font-family: ${customFont}, sans-serif;">${service.title}</h3>
+                      <p style="font-size: ${baseFont * 0.95}px; color: ${config.text_color}; opacity: 0.7; line-height: 1.6; font-family: ${customFont}, sans-serif;">${service.desc}</p>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+              
+              <div style="background: ${config.background_color}; border: 1px solid rgba(147, 51, 234, 0.2); padding: 60px 40px; border-radius: 30px;">
+                <h2 class="fade-in-up" style="font-size: ${baseFont * 2.5}px; color: ${config.text_color}; margin-bottom: 40px; font-weight: 700; text-align: center; font-family: ${customFont}, sans-serif;">Beyond Coding</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 25px;">
+                  ${[
+                    { icon: '📚', label: 'Reading Tech Blogs' },
+                    { icon: '🎮', label: 'Gaming' },
+                    { icon: '🏃', label: 'Fitness' },
+                    { icon: '🎵', label: 'Music' },
+                    { icon: '✈️', label: 'Traveling' },
+                    { icon: '☕', label: 'Coffee' }
+                  ].map((interest, index) => `
+                    <div class="fade-in-up delay-${(index % 3) + 1}" style="background: ${config.surface_color}; padding: 30px; border-radius: 15px; text-align: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                      <div style="font-size: ${baseFont * 3}px; margin-bottom: 12px;">${interest.icon}</div>
+                      <p style="font-size: ${baseFont * 0.95}px; color: ${config.text_color}; font-family: ${customFont}, sans-serif;">${interest.label}</p>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- CTA -->
+          <section style="background: linear-gradient(135deg, ${config.primary_action_color} 0%, ${config.secondary_action_color} 100%); padding: 80px 40px; text-align: center;">
+            <div style="max-width: 800px; margin: 0 auto;">
+              <h2 class="fade-in-up" style="font-size: ${baseFont * 2.5}px; color: white; margin-bottom: 20px; font-weight: 700; font-family: ${customFont}, sans-serif;">Ready to Build Something Amazing?</h2>
+              <p class="fade-in-up delay-1" style="font-size: ${baseFont * 1.1}px; color: white; opacity: 0.9; margin-bottom: 40px; line-height: 1.6; font-family: ${customFont}, sans-serif;">Let's collaborate and bring your ideas to life</p>
+              <div class="fade-in-up delay-2" style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <button onclick="navigateToPage('contact')" style="background: white; color: ${config.primary_action_color}; border: none; padding: 16px 40px; border-radius: 12px; font-size: ${baseFont}px; font-weight: 600; cursor: pointer; transition: transform 0.3s ease; font-family: ${customFont}, sans-serif;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Get In Touch</button>
+                <button onclick="navigateToPage('resume')" style="background: transparent; color: white; border: 2px solid white; padding: 16px 40px; border-radius: 12px; font-size: ${baseFont}px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: ${customFont}, sans-serif;" onmouseover="this.style.background='white'; this.style.color='${config.primary_action_color}'" onmouseout="this.style.background='transparent'; this.style.color='white'">Download Resume</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      `;
+    }
+
+    function renderAboutPage() {
+      const config = window.elementSdk?.config || defaultConfig;
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      
+      return `
+        <div style="background: ${config.background_color}; min-height: 100%; padding: 80px 40px;">
+          <div style="max-width: 1200px; margin: 0 auto;">
+            <h1 class="fade-in-up" style="font-size: ${baseFont * 3.5}px; color: ${config.text_color}; margin-bottom: 20px; font-weight: 700; text-align: center; font-family: ${customFont}, sans-serif;">About <span class="gradient-text">Me</span></h1>
+            <p class="fade-in-up delay-1" style="font-size: ${baseFont * 1.1}px; color: ${config.text_color}; opacity: 0.7; text-align: center; margin-bottom: 60px; font-family: ${customFont}, sans-serif;">Get to know the developer behind the code</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; align-items: center; margin-bottom: 80px;">
+              <div class="slide-in-left">
+                <div style="width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, ${config.primary_action_color}, ${config.secondary_action_color}); border-radius: 30px; display: flex; align-items: center; justify-content: center; font-size: ${baseFont * 10}px; box-shadow: 0 20px 60px rgba(147, 51, 234, 0.3);">
+                  👨‍💻
+                </div>
+              </div>
+              
+              <div class="slide-in-right">
+                <h2 style="font-size: ${baseFont * 2}px; color: ${config.text_color}; margin-bottom: 20px; font-weight: 600; font-family: ${customFont}, sans-serif;">Hello! I'm ${config.developer_name}</h2>
+                <p style="font-size: ${baseFont}px; color: ${config.text_color}; opacity: 0.8; line-height: 1.8; margin-bottom: 20px; font-family: ${customFont}, sans-serif;">
+                  I'm a passionate Full Stack Web Developer with expertise in building robust, scalable, and user-friendly web applications. With a strong foundation in both frontend and backend technologies, I create seamless digital experiences.
+                </p>
+                <p style="font-size: ${baseFont}px; color: ${config.text_color}; opacity: 0.8; line-height: 1.8; margin-bottom: 30px; font-family: ${customFont}, sans-serif;">
+                  My journey in web development started with curiosity and evolved into a professional career where I continuously learn and adapt to new technologies.
+                </p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                  <button onclick="navigateToPage('contact')" style="background: ${config.primary_action_color}; color: white; border: none; padding: 14px 30px; border-radius: 10px; font-size: ${baseFont * 0.95}px; font-weight: 600; cursor: pointer; font-family: ${customFont}, sans-serif;">Contact Me</button>
+                  <button onclick="navigateToPage('resume')" style="background: transparent; color: ${config.primary_action_color}; border: 2px solid ${config.primary_action_color}; padding: 14px 30px; border-radius: 10px; font-size: ${baseFont * 0.95}px; font-weight: 600; cursor: pointer; font-family: ${customFont}, sans-serif;">View Resume</button>
+                </div>
+              </div>
+            </div>
+            
+            <div style="margin-bottom: 80px;">
+              <h2 class="fade-in-up" style="font-size: ${baseFont * 2.5}px; color: ${config.text_color}; margin-bottom: 40px; font-weight: 700; text-align: center; font-family: ${customFont}, sans-serif;">What I Do</h2>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                ${[
+                  { icon: '🎨', title: 'Frontend Development', desc: 'Creating beautiful, responsive interfaces with React.js and modern CSS' },
+                  { icon: '⚙️', title: 'Backend Development', desc: 'Building robust server-side applications with Node.js and Java' },
+                  { icon: '💾', title: 'Database Design', desc: 'Designing efficient database solutions for optimal performance' },
+                  { icon: '🚀', title: 'Full Stack Solutions', desc: 'End-to-end development from concept to deployment' }
+                ].map((service, index) => `
+                  <div class="hover-lift fade-in-up delay-${index + 1}" style="background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.2); padding: 40px; border-radius: 20px; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.borderColor='${config.primary_action_color}'" onmouseout="this.style.borderColor='rgba(147, 51, 234, 0.2)'">
+                    <div style="font-size: ${baseFont * 4}px; margin-bottom: 20px;">${service.icon}</div>
+                    <h3 style="font-size: ${baseFont * 1.3}px; color: ${config.text_color}; margin-bottom: 15px; font-weight: 600; font-family: ${customFont}, sans-serif;">${service.title}</h3>
+                    <p style="font-size: ${baseFont * 0.95}px; color: ${config.text_color}; opacity: 0.7; line-height: 1.6; font-family: ${customFont}, sans-serif;">${service.desc}</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            
+            <div style="background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.2); padding: 60px 40px; border-radius: 30px;">
+              <h2 class="fade-in-up" style="font-size: ${baseFont * 2.5}px; color: ${config.text_color}; margin-bottom: 40px; font-weight: 700; text-align: center; font-family: ${customFont}, sans-serif;">Beyond Coding</h2>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+                ${[
+                  { icon: '📚', label: 'Reading Tech Blogs' },
+                  { icon: '🎮', label: 'Gaming' },
+                  { icon: '🏃', label: 'Fitness' },
+                  { icon: '🎵', label: 'Music' },
+                  { icon: '✈️', label: 'Traveling' },
+                  { icon: '☕', label: 'Coffee' }
+                ].map((interest, index) => `
+                  <div class="fade-in-up delay-${(index % 3) + 1}" style="background: ${config.background_color}; padding: 30px; border-radius: 15px; text-align: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    <div style="font-size: ${baseFont * 3}px; margin-bottom: 12px;">${interest.icon}</div>
+                    <p style="font-size: ${baseFont * 0.95}px; color: ${config.text_color}; font-family: ${customFont}, sans-serif;">${interest.label}</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSkillsPage() {
+      const config = window.elementSdk?.config || defaultConfig;
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      
+      return `
+        <div style="background: ${config.background_color}; min-height: 100%; padding: 80px 40px;">
+          <div style="max-width: 1200px; margin: 0 auto;">
+            <h1 class="fade-in-up" style="font-size: ${baseFont * 3.5}px; color: ${config.text_color}; margin-bottom: 20px; font-weight: 700; text-align: center; font-family: ${customFont}, sans-serif;">My <span class="gradient-text">Skills</span></h1>
+            <p class="fade-in-up delay-1" style="font-size: ${baseFont * 1.1}px; color: ${config.text_color}; opacity: 0.7; text-align: center; margin-bottom: 60px; font-family: ${customFont}, sans-serif;">Expertise across the full stack</p>
+            
+            <div style="display: grid; gap: 30px; margin-bottom: 60px;">
+              ${skills.map((skill, index) => `
+                <div class="fade-in-up delay-${(index % 3) + 1}" style="background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.2); padding: 40px; border-radius: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(10px)'" onmouseout="this.style.transform='translateX(0)'">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                      <div style="font-size: ${baseFont * 3}px;">${skill.icon}</div>
+                      <h3 style="font-size: ${baseFont * 1.5}px; color: ${config.text_color}; font-weight: 600; font-family: ${customFont}, sans-serif;">${skill.name}</h3>
+                    </div>
+                    <span style="font-size: ${baseFont * 1.3}px; color: ${config.primary_action_color}; font-weight: 700; font-family: ${customFont}, sans-serif;">${skill.level}%</span>
+                  </div>
+                  <div style="background: ${config.background_color}; height: 12px; border-radius: 6px; overflow: hidden;">
+                    <div style="width: ${skill.level}%; height: 100%; background: linear-gradient(90deg, ${config.primary_action_color}, ${config.secondary_action_color}); border-radius: 6px; transition: width 2s ease;"></div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+              ${[
+                { title: 'Frontend', icon: '🎨', skills: ['HTML', 'CSS', 'JavaScript', 'React.js'] },
+                { title: 'Backend', icon: '⚙️', skills: ['Node.js', 'Java', 'Python'] },
+                { title: 'Other', icon: '🛠️', skills: ['C++', 'Git', 'APIs', 'MongoDB'] }
+              ].map((category, index) => `
+                <div class="hover-lift fade-in-up delay-${index + 1}" style="background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.2); padding: 40px; border-radius: 20px; text-align: center;">
+                  <div style="font-size: ${baseFont * 4}px; margin-bottom: 20px;">${category.icon}</div>
+                  <h3 style="font-size: ${baseFont * 1.5}px; color: ${config.text_color}; margin-bottom: 25px; font-weight: 600; font-family: ${customFont}, sans-serif;">${category.title}</h3>
+                  <div style="display: flex; flex-direction: column; gap: 12px;">
+                    ${category.skills.map(skill => `
+                      <div style="background: ${config.background_color}; padding: 12px 20px; border-radius: 10px; color: ${config.text_color}; font-size: ${baseFont * 0.95}px; transition: all 0.3s ease; cursor: pointer; font-family: ${customFont}, sans-serif;" onmouseover="this.style.background='${config.primary_action_color}'; this.style.transform='scale(1.05)'" onmouseout="this.style.background='${config.background_color}'; this.style.transform='scale(1)'">${skill}</div>
+                    `).join('')}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderProjectsPage() {
+      const config = window.elementSdk?.config || defaultConfig;
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      
+      return `
+        <div style="background: ${config.background_color}; min-height: 100%; padding: 80px 40px;">
+          <div style="max-width: 1400px; margin: 0 auto;">
+            <h1 class="fade-in-up" style="font-size: ${baseFont * 3.5}px; color: ${config.text_color}; margin-bottom: 20px; font-weight: 700; text-align: center; font-family: ${customFont}, sans-serif;">My <span class="gradient-text">Projects</span></h1>
+            <p class="fade-in-up delay-1" style="font-size: ${baseFont * 1.1}px; color: ${config.text_color}; opacity: 0.7; text-align: center; margin-bottom: 60px; font-family: ${customFont}, sans-serif;">Explore my portfolio</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+              ${projects.map((project, index) => `
+                <div class="hover-lift fade-in-up delay-${(index % 3) + 1}" onclick="openProject(${project.id})" style="background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.2); border-radius: 20px; overflow: hidden; cursor: pointer;">
+                  <div style="background: linear-gradient(135deg, ${config.primary_action_color} 0%, ${config.secondary_action_color} 100%); padding: 80px; text-align: center; position: relative;">
+                    <div style="font-size: ${baseFont * 6}px;">${project.emoji}</div>
+                    <div style="position: absolute; top: 15px; right: 15px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 8px 16px; border-radius: 20px; font-size: ${baseFont * 0.8}px; color: white; font-weight: 600; font-family: ${customFont}, sans-serif;">Click to View</div>
+                  </div>
+                  <div style="padding: 35px;">
+                    <h3 style="font-size: ${baseFont * 1.5}px; color: ${config.text_color}; margin-bottom: 15px; font-weight: 600; font-family: ${customFont}, sans-serif;">${project.name}</h3>
+                    <p style="font-size: ${baseFont}px; color: ${config.text_color}; opacity: 0.7; margin-bottom: 25px; line-height: 1.6; font-family: ${customFont}, sans-serif;">${project.description}</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                      ${project.tech.map(tech => `
+                        <span style="background: ${config.background_color}; color: ${config.primary_action_color}; padding: 8px 14px; border-radius: 8px; font-size: ${baseFont * 0.8}px; font-weight: 500; font-family: ${customFont}, sans-serif;">${tech}</span>
+                      `).join('')}
+                    </div>
+                    <button style="width: 100%; background: ${config.primary_action_color}; color: white; border: none; padding: 14px; border-radius: 10px; font-size: ${baseFont * 0.95}px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: ${customFont}, sans-serif;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">View Project →</button>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderContactPage() {
+      const config = window.elementSdk?.config || defaultConfig;
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      
+      return `
+        <div style="background: ${config.background_color}; min-height: 100%; padding: 80px 40px;">
+          <div style="max-width: 1200px; margin: 0 auto;">
+            <h1 class="fade-in-up" style="font-size: ${baseFont * 3.5}px; color: ${config.text_color}; margin-bottom: 20px; font-weight: 700; text-align: center; font-family: ${customFont}, sans-serif;">Get In <span class="gradient-text">Touch</span></h1>
+            <p class="fade-in-up delay-1" style="font-size: ${baseFont * 1.1}px; color: ${config.text_color}; opacity: 0.7; text-align: center; margin-bottom: 60px; font-family: ${customFont}, sans-serif;">Let's discuss your next project</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px;">
+              <div class="slide-in-left">
+                <h2 style="font-size: ${baseFont * 2}px; color: ${config.text_color}; margin-bottom: 30px; font-weight: 600; font-family: ${customFont}, sans-serif;">Contact Information</h2>
+                
+                <div style="display: flex; flex-direction: column; gap: 25px;">
+                  <a href="tel:${config.phone_number}" style="display: flex; align-items: center; gap: 20px; background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.2); padding: 25px; border-radius: 15px; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(10px)'; this.style.borderColor='${config.primary_action_color}'" onmouseout="this.style.transform='translateX(0)'; this.style.borderColor='rgba(147, 51, 234, 0.2)'">
+                    <div style="width: 50px; height: 50px; background: ${config.primary_action_color}; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: ${baseFont * 1.5}px;">📞</div>
+                    <div>
+                      <p style="font-size: ${baseFont * 0.85}px; color: ${config.text_color}; opacity: 0.7; margin-bottom: 4px; font-family: ${customFont}, sans-serif;">Call Me</p>
+                      <p style="font-size: ${baseFont * 1.1}px; color: ${config.text_color}; font-weight: 600; font-family: ${customFont}, sans-serif;">${config.phone_number}</p>
+                    </div>
+                  </a>
+                  
+                  <a href="mailto:${config.email_address}" style="display: flex; align-items: center; gap: 20px; background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.2); padding: 25px; border-radius: 15px; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(10px)'; this.style.borderColor='${config.primary_action_color}'" onmouseout="this.style.transform='translateX(0)'; this.style.borderColor='rgba(147, 51, 234, 0.2)'">
+                    <div style="width: 50px; height: 50px; background: ${config.primary_action_color}; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: ${baseFont * 1.5}px;">📧</div>
+                    <div>
+                      <p style="font-size: ${baseFont * 0.85}px; color: ${config.text_color}; opacity: 0.7; margin-bottom: 4px; font-family: ${customFont}, sans-serif;">Email Me</p>
+                      <p style="font-size: ${baseFont * 1.1}px; color: ${config.text_color}; font-weight: 600; font-family: ${customFont}, sans-serif;">${config.email_address}</p>
+                    </div>
+                  </a>
+                  
+                  <a href="https://wa.me/${config.phone_number}" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 20px; background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.2); padding: 25px; border-radius: 15px; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(10px)'; this.style.borderColor='${config.primary_action_color}'" onmouseout="this.style.transform='translateX(0)'; this.style.borderColor='rgba(147, 51, 234, 0.2)'">
+                    <div style="width: 50px; height: 50px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: ${baseFont * 1.5}px;">💬</div>
+                    <div>
+                      <p style="font-size: ${baseFont * 0.85}px; color: ${config.text_color}; opacity: 0.7; margin-bottom: 4px; font-family: ${customFont}, sans-serif;">WhatsApp</p>
+                      <p style="font-size: ${baseFont * 1.1}px; color: ${config.text_color}; font-weight: 600; font-family: ${customFont}, sans-serif;">Chat Now</p>
+                    </div>
+                  </a>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                  <h3 style="font-size: ${baseFont * 1.3}px; color: ${config.text_color}; margin-bottom: 20px; font-weight: 600; font-family: ${customFont}, sans-serif;">Follow Me</h3>
+                  <div style="display: flex; gap: 15px;">
+                    ${['💼', '🐦', '📷', '💻'].map(icon => `
+                      <a href="#" style="width: 50px; height: 50px; background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: ${baseFont * 1.5}px; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.background='${config.primary_action_color}'; this.style.borderColor='${config.primary_action_color}'; this.style.transform='translateY(-5px)'" onmouseout="this.style.background='${config.surface_color}'; this.style.borderColor='rgba(147, 51, 234, 0.2)'; this.style.transform='translateY(0)'">${icon}</a>
+                    `).join('')}
+                  </div>
+                </div>
+              </div>
+              
+              <div class="slide-in-right">
+                <form onsubmit="event.preventDefault(); showToast('Thank you! I will get back to you soon.');" style="background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.2); padding: 40px; border-radius: 20px;">
+                  <h2 style="font-size: ${baseFont * 2}px; color: ${config.text_color}; margin-bottom: 30px; font-weight: 600; font-family: ${customFont}, sans-serif;">Send a Message</h2>
+                  
+                  <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div>
+                      <label for="contact-name" style="display: block; font-size: ${baseFont * 0.9}px; color: ${config.text_color}; margin-bottom: 8px; font-weight: 500; font-family: ${customFont}, sans-serif;">Your Name</label>
+                      <input id="contact-name" type="text" required style="width: 100%; padding: 16px; background: ${config.background_color}; border: 1px solid rgba(147, 51, 234, 0.2); border-radius: 12px; color: ${config.text_color}; font-size: ${baseFont}px; box-sizing: border-box; transition: border-color 0.3s ease; font-family: ${customFont}, sans-serif;" onfocus="this.style.borderColor='${config.primary_action_color}'" onblur="this.style.borderColor='rgba(147, 51, 234, 0.2)'">
+                    </div>
+                    
+                    <div>
+                      <label for="contact-email" style="display: block; font-size: ${baseFont * 0.9}px; color: ${config.text_color}; margin-bottom: 8px; font-weight: 500; font-family: ${customFont}, sans-serif;">Your Email</label>
+                      <input id="contact-email" type="email" required style="width: 100%; padding: 16px; background: ${config.background_color}; border: 1px solid rgba(147, 51, 234, 0.2); border-radius: 12px; color: ${config.text_color}; font-size: ${baseFont}px; box-sizing: border-box; transition: border-color 0.3s ease; font-family: ${customFont}, sans-serif;" onfocus="this.style.borderColor='${config.primary_action_color}'" onblur="this.style.borderColor='rgba(147, 51, 234, 0.2)'">
+                    </div>
+                    
+                    <div>
+                      <label for="contact-subject" style="display: block; font-size: ${baseFont * 0.9}px; color: ${config.text_color}; margin-bottom: 8px; font-weight: 500; font-family: ${customFont}, sans-serif;">Subject</label>
+                      <input id="contact-subject" type="text" required style="width: 100%; padding: 16px; background: ${config.background_color}; border: 1px solid rgba(147, 51, 234, 0.2); border-radius: 12px; color: ${config.text_color}; font-size: ${baseFont}px; box-sizing: border-box; transition: border-color 0.3s ease; font-family: ${customFont}, sans-serif;" onfocus="this.style.borderColor='${config.primary_action_color}'" onblur="this.style.borderColor='rgba(147, 51, 234, 0.2)'">
+                    </div>
+                    
+                    <div>
+                      <label for="contact-message" style="display: block; font-size: ${baseFont * 0.9}px; color: ${config.text_color}; margin-bottom: 8px; font-weight: 500; font-family: ${customFont}, sans-serif;">Message</label>
+                      <textarea id="contact-message" required rows="5" style="width: 100%; padding: 16px; background: ${config.background_color}; border: 1px solid rgba(147, 51, 234, 0.2); border-radius: 12px; color: ${config.text_color}; font-size: ${baseFont}px; resize: vertical; box-sizing: border-box; transition: border-color 0.3s ease; font-family: ${customFont}, sans-serif;" onfocus="this.style.borderColor='${config.primary_action_color}'" onblur="this.style.borderColor='rgba(147, 51, 234, 0.2)'"></textarea>
+                    </div>
+                    
+                    <button type="submit" style="background: ${config.primary_action_color}; color: white; border: none; padding: 18px; border-radius: 12px; font-size: ${baseFont * 1.05}px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: ${customFont}, sans-serif;" onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 10px 30px rgba(147, 51, 234, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'">Send Message 🚀</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderGenericPage(pageKey) {
+      const config = window.elementSdk?.config || defaultConfig;
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const page = pages[pageKey];
+      
+      return `
+        <div style="background: ${config.background_color}; min-height: 100%; padding: 80px 40px;">
+          <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <div style="font-size: ${baseFont * 8}px; margin-bottom: 30px;" class="float-animation">${page.icon}</div>
+            <h1 class="fade-in-up" style="font-size: ${baseFont * 3.5}px; color: ${config.text_color}; margin-bottom: 20px; font-weight: 700; font-family: ${customFont}, sans-serif;"><span class="gradient-text">${page.title}</span></h1>
+            <p class="fade-in-up delay-1" style="font-size: ${baseFont * 1.2}px; color: ${config.text_color}; opacity: 0.7; margin-bottom: 50px; font-family: ${customFont}, sans-serif;">Coming soon with amazing content!</p>
+            <button onclick="navigateToPage('home')" class="fade-in-up delay-2" style="background: ${config.primary_action_color}; color: white; border: none; padding: 16px 40px; border-radius: 12px; font-size: ${baseFont}px; font-weight: 600; cursor: pointer; transition: transform 0.3s ease; font-family: ${customFont}, sans-serif;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">← Back to Home</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function showToast(message) {
+      const config = window.elementSdk?.config || defaultConfig;
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      
+      const toast = document.createElement('div');
+      toast.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: ${config.primary_action_color};
+        color: white;
+        padding: 20px 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(147, 51, 234, 0.4);
+        z-index: 10000;
+        font-size: ${baseFont}px;
+        font-weight: 600;
+        font-family: ${customFont}, sans-serif;
+        animation: fadeInUp 0.3s ease;
+      `;
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.style.animation = 'fadeInUp 0.3s ease reverse';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    function renderServicesPage() {
+  const config = window.elementSdk?.config || defaultConfig;
+  const baseFont = config.font_size || defaultConfig.font_size;
+  const customFont = config.font_family || defaultConfig.font_family;
+  const primary = config.primary_action_color;
+  const secondary = config.secondary_action_color;
+
+  return `
+    <div style="background: ${config.background_color}; min-height: 100%; padding: 80px 40px;">
+      <div style="max-width: 1400px; margin: 0 auto;">
+      
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 70px;">
+          <h1 class="fade-in-up" style="font-size: ${baseFont * 3.6}px; color: ${config.text_color}; margin-bottom: 16px; font-weight: 800; font-family: ${customFont}, sans-serif;">
+            My <span class="gradient-text">Services</span>
+          </h1>
+          <p class="fade-in-up delay-1" style="font-size: ${baseFont * 1.2}px; color: ${config.text_color}; opacity: 0.75; max-width: 700px; margin: 0 auto; line-height: 1.6; font-family: ${customFont}, sans-serif;">
+            Transforming ideas into powerful digital solutions with modern technologies and creative approach
+          </p>
+        </div>
+
+        <!-- Services Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 35px; margin-bottom: 60px;">
+        
+          <!-- Card 1 - Website Development -->
+          <div class="fade-in-up delay-1 hover-lift" style="background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.18); border-radius: 24px; padding: 40px; transition: all 0.4s ease; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -40px; right: -40px; width: 140px; height: 140px; background: linear-gradient(135deg, ${primary}40, ${secondary}30); border-radius: 50%; filter: blur(60px); opacity: 0.6;"></div>
+            
+            <div style="margin-bottom: 28px;">
+              <img src="https://icon-library.com/images/web-development-icon-png/web-development-icon-png-24.jpg" width="64" alt="Web Development" style="filter: drop-shadow(0 8px 16px ${primary}60);">
+            </div>
+            
+            <h2 style="font-size: ${baseFont * 1.7}px; color: ${config.text_color}; margin-bottom: 18px; font-weight: 700; font-family: ${customFont}, sans-serif;">
+              Website Development
+            </h2>
+            
+            <p style="font-size: ${baseFont * 0.98}px; color: ${config.text_color}; opacity: 0.82; line-height: 1.7; font-family: ${customFont}, sans-serif;">
+              Our web development services transform your business with modern, fast, and secure websites designed to stand out in the digital world. We create user-friendly, mobile-responsive, and SEO-optimized websites that not only look stunning but also help you achieve your business goals.
+            </p>
+          </div>
+
+          <!-- Card 2 - Video Editing -->
+          <div class="fade-in-up delay-2 hover-lift" style="background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.18); border-radius: 24px; padding: 40px; transition: all 0.4s ease; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -40px; right: -40px; width: 140px; height: 140px; background: linear-gradient(135deg, ${secondary}40, ${primary}30); border-radius: 50%; filter: blur(60px); opacity: 0.6;"></div>
+            
+            <div style="margin-bottom: 28px;">
+              <img src="https://cdn-icons-png.flaticon.com/512/8152/8152756.png" width="64" alt="Video Editing" style="filter: drop-shadow(0 8px 16px ${secondary}60);">
+            </div>
+            
+            <h2 style="font-size: ${baseFont * 1.7}px; color: ${config.text_color}; margin-bottom: 18px; font-weight: 700; font-family: ${customFont}, sans-serif;">
+              Video Editing
+            </h2>
+            
+            <p style="font-size: ${baseFont * 0.98}px; color: ${config.text_color}; opacity: 0.82; line-height: 1.7; font-family: ${customFont}, sans-serif;">
+              Our professional video editing services turn your raw footage into captivating stories that engage and inspire your audience. Whether it's for social media, corporate presentations, weddings, or YouTube content — we fine-tune every detail to create polished, high-quality videos.
+            </p>
+          </div>
+
+          <!-- Card 3 - UI/UX Design -->
+          <div class="fade-in-up delay-3 hover-lift" style="background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.18); border-radius: 24px; padding: 40px; transition: all 0.4s ease; position: relative; overflow: hidden; grid-column: span 1;">
+            <div style="position: absolute; top: -40px; right: -40px; width: 140px; height: 140px; background: linear-gradient(135deg, ${primary}35, ${secondary}35); border-radius: 50%; filter: blur(60px); opacity: 0.6;"></div>
+            
+            <div style="margin-bottom: 28px;">
+              <img src="https://cdn0.iconfinder.com/data/icons/elpis/144/Web_Design-512.png" width="64" alt="UI/UX Design" style="filter: drop-shadow(0 8px 16px ${primary}60);">
+            </div>
+            
+            <h2 style="font-size: ${baseFont * 1.7}px; color: ${config.text_color}; margin-bottom: 18px; font-weight: 700; font-family: ${customFont}, sans-serif;">
+              UI/UX Design
+            </h2>
+            
+            <p style="font-size: ${baseFont * 0.98}px; color: ${config.text_color}; opacity: 0.82; line-height: 1.7; font-family: ${customFont}, sans-serif;">
+              Our UI/UX design services focus on creating intuitive, visually appealing, and user-friendly digital experiences that drive engagement and satisfaction. From wireframes to final designs — every detail is optimized for usability and aesthetics.
+            </p>
+          </div>
+
+          <!-- Card 4 - Backend & API Development -->
+          <div class="fade-in-up delay-4 hover-lift" style="background: ${config.surface_color}; border: 1px solid rgba(147, 51, 234, 0.18); border-radius: 24px; padding: 40px; transition: all 0.4s ease; position: relative; overflow: hidden; grid-column: span 1;">
+            <div style="position: absolute; top: -40px; right: -40px; width: 140px; height: 140px; background: linear-gradient(135deg, ${secondary}40, ${primary}30); border-radius: 50%; filter: blur(60px); opacity: 0.6;"></div>
+            
+            <div style="margin-bottom: 28px;">
+              <img src="https://cdn3d.iconscout.com/3d/premium/thumb/computer-api-development-3d-icon-png-download-5487948.png" width="64" alt="API Development" style="filter: drop-shadow(0 8px 16px ${secondary}60);">
+            </div>
+            
+            <h2 style="font-size: ${baseFont * 1.7}px; color: ${config.text_color}; margin-bottom: 18px; font-weight: 700; font-family: ${customFont}, sans-serif;">
+              Backend & API Development
+            </h2>
+            
+            <p style="font-size: ${baseFont * 0.98}px; color: ${config.text_color}; opacity: 0.82; line-height: 1.7; font-family: ${customFont}, sans-serif;">
+              Our backend and API development services form the backbone of your digital applications, ensuring fast, secure, and scalable performance. Custom APIs, databases, authentication, microservices — we build solid foundations for your success.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Final CTA -->
+        <div style="text-align: center; margin-top: 80px;">
+          <button onclick="navigateToPage('contact')" class="glow-animation" style="background: linear-gradient(90deg, ${primary}, ${secondary}); color: white; border: none; padding: 18px 48px; border-radius: 50px; font-size: ${baseFont * 1.1}px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; font-family: ${customFont}, sans-serif; box-shadow: 0 10px 30px rgba(147,51,234,0.35);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+            Let's Start Your Project →
+          </button>
+        </div>
+
+      </div>
+    </div>
+  `;
+}
+
+    function renderPage() {
+      const config = window.elementSdk?.config || defaultConfig;
+      
+      let content = '';
+     switch(currentPage) {
+  case 'home':
+    content = renderHomePage();
+    break;
+  case 'about':
+    content = renderAboutPage();
+    break;
+  case 'skills':
+    content = renderSkillsPage();
+    break;
+  case 'projects':
+    content = renderProjectsPage();
+    break;
+  case 'contact':
+    content = renderContactPage();
+    break;
+
+  // ←←← Yeh line bilkul sahi hai
+  case 'services':
+    content = renderServicesPage();   // Sirf Services ke liye custom page
+    break;
+
+  // ←←← Baaki sab pages jo abhi bhi "Coming soon" dikhane chahiye
+  case 'experience':
+  case 'testimonials':
+  case 'certifications':
+  case 'techStack':
+  case 'blog':
+  case 'resume':
+  case 'achievements':
+  case 'caseStudies':
+  case 'faq':
+    content = renderGenericPage(currentPage);  // Yeh line important hai!
+    break;
+
+  default:
+    content = renderHomePage();
+}
+      const app = document.getElementById('app');
+      app.innerHTML = renderNav() + content;
+      
+      document.body.style.background = config.background_color;
+      document.body.style.margin = '0';
+      document.body.style.padding = '0';
+    }
+
+    async function onConfigChange(config) {
+      renderPage();
+    }
+
+    renderPage();
+    
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.primary_action_color || defaultConfig.primary_action_color,
+              set: (value) => {
+                config.primary_action_color = value;
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+              set: (value) => {
+                config.secondary_action_color = value;
+                window.elementSdk.setConfig({ secondary_action_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["developer_name", config.developer_name || defaultConfig.developer_name],
+          ["tagline", config.tagline || defaultConfig.tagline],
+          ["phone_number", config.phone_number || defaultConfig.phone_number],
+          ["email_address", config.email_address || defaultConfig.email_address],
+          ["hero_title", config.hero_title || defaultConfig.hero_title],
+          ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+          ["cta_button", config.cta_button || defaultConfig.cta_button]
+        ])
+      });
+    }
+  </script>
+ </body>
+</html>
